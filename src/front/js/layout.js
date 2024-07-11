@@ -1,15 +1,19 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
-import { BackendURL } from "./component/backendURL";
+import ScrollToTop from "./component/scrollToTop.jsx";
+import { BackendURL } from "./component/backendURL.jsx";
 
-import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
-import injectContext from "./store/appContext";
+import { Home } from "./pages/home.jsx";
+import { Demo } from "./pages/demo.jsx";
+import { Single } from "./pages/single.jsx";
+import injectContext from "./store/appContext.js";
 
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
+import { Navbar } from "./component/navbar.jsx";
+import { Footer } from "./component/footer.jsx";
+import { Contact } from "./pages/Contact.jsx";
+import { ContactDetails } from "./pages/ContactDetails.jsx";
+import CreateContact from "./pages/CreateContact.jsx";
+import ContactEdit from "./pages/ContactEdit.jsx";
 
 //create your first component
 const Layout = () => {
@@ -26,11 +30,11 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
-                        <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Contact />} path="/Contact" />
+                        <Route element={<ContactDetails />} path="/Contact-details" />
+                        <Route element={<CreateContact />} path="/CreateContact" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>
