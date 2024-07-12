@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext.js";
 
-const ContactEdit = ({ selectedContact }) => {
+const ContactEdit = ({ selectUser }) => {
     const { actions } = useContext(Context);
     const [formData, setFormData] = useState({
         name: '',
@@ -11,10 +11,10 @@ const ContactEdit = ({ selectedContact }) => {
     });
 
     useEffect(() => {
-        if (selectedContact) {
-            setFormData(selectedContact);
+        if (selectUser) {
+            setFormData(selectUser);
         }
-    }, [selectedContact]);
+    }, [selectUser]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;

@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				{ title: "SECOND", background: "white", initial: "white" }
 			],
 			cohorte: 'Spain 72',
-			user: 'Pepe',
+			user: '',
 			host: 'https://playground.4geeks.com/contact',
 			alert: {
 				visible: true,
@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"phone": "",
 				"email": "",
 				"address": ""
-			  },
+			},
 		},
 		actions: {
 			exampleFunction: () => {
@@ -61,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ contacts: data.contacts });
 			},
 			getPosts: () => { },
-			setCurrentContact: (contact) => {setStore({ currentContact: contact });},
+			setCurrentContact: (contact) => { setStore({ currentContact: contact }); },
 			deleteUser: async () => {
 				const url = `${getStore().host}/agendas/${getStore().user}/contacts/${getStore().currentContact.id}`;
 				const options = {
@@ -77,38 +77,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log('User deleted:', data);
 			},
 			createUser: async (newContact) => {
-                const url = `${getStore().host}/agendas/${getStore().user}/contacts`;
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(newContact)
-                };
-                const response = await fetch(url, options);
-                if (!response.ok) {
-                    console.log('Error:', response.status, response.statusText);
-                    return;
-                }
-                const data = await response.json();
-                setStore({ contacts: [...getStore().contacts, data] });
-            },
-			setUser: (username) => {setStore({ user: username });},
-			editUser: async (dataToSend) => {
-				const url = `${getStore().host}/agendas/${getStore().user}/contacts/${getStore().currentContact.id}`;
+				const url = `${getStore().host}/agendas/${getStore().user}/contacts`;
 				const options = {
-					method: 'PUT',
+					method: 'POST',
 					headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(dataToSend)
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(newContact)
 				};
-				
 				const response = await fetch(url, options);
 				if (!response.ok) {
 					console.log('Error:', response.status, response.statusText);
 					return;
 				}
+				const data = await response.json();
+				setStore({ contacts: [...getStore().contacts, data] });
+			},
+			setUser: (username) => { setStore({ user: username }); },
+			editUser: async (updateUser) => {
+				const url = `${getStore().host}/agendas/${getStore().user}/contacts/${getStore().currentContact.id}`;
+				const options = {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(updateUser)
+				};
+
+				const response = await fetch(url, options);
+				if (!response.ok) {
+					console.log('Error:', response.status, response.statusText);
+					return;
+				}
+			},
+			selectUser: (user) => {
+				setStore({ selectUser: user });
+			},
+			updateUser: (updatedUser) => {
+				const store = getStore();
+				const updatedUsers = store.users.map(user =>
+					user.id === updatedUser.id ? updatedUser : user
+				);
+				setStore({ users: updatedUsers });
 			},
 		},
 	};

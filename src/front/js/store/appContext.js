@@ -31,7 +31,8 @@ const injectContext = PassedComponent => {
 			state.actions.getMessage(); 
 			state.actions.getUsers();
 			state.actions.deleteUser();
-			state.actions.createUser();// <---- calling this function from the flux.js actions
+			state.actions.createUser();
+			// <---- calling this function from the flux.js actions
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,
