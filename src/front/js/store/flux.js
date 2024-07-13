@@ -109,6 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log('Error:', response.status, response.statusText);
 					return;
 				}
+				getActions().getContact()
 			},
 			selectUser: (user) => {
 				setStore({ selectUser: user });

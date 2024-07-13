@@ -1,8 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext.js";
 
-const ContactEdit = ({ selectUser }) => {
-    const { actions } = useContext(Context);
+export const ContactEdit = ({ selectUser }) => {
+    const [name, setName] = useContext(Context);
+    const [email, setEmail] = useContext(Context);
+    const [phone, setPhone] = useContext(Context);
+    const [address, setAddress] = useContext(Context);
+    const { store, actions } = useContext(Context);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -11,10 +15,8 @@ const ContactEdit = ({ selectUser }) => {
     });
 
     useEffect(() => {
-        if (selectUser) {
-            setFormData(selectUser);
-        }
-    }, [selectUser]);
+        setName.currentContact.name
+    }, [store.currentContact]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
