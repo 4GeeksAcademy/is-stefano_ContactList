@@ -20,9 +20,9 @@ export const Contact = () => {
     actions.getUsers();
   };
 
-  const handleEdit = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+  const handleEdit = (item) => {
+    actions.setCurrentContact(item);
+    navigate("/ContactEdit")
   };
 
   const handleSubmit = (item) => {

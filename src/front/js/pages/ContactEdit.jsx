@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext.js";
+import { useNavigate } from "react-router-dom";
 
 export const ContactEdit = ({ selectUser }) => {
-    const [name, setName] = useContext(Context);
-    const [email, setEmail] = useContext(Context);
-    const [phone, setPhone] = useContext(Context);
-    const [address, setAddress] = useContext(Context);
+    // const [name, setName] = useEffect();
+    // const [email, setEmail] = useEffect();
+    // const [phone, setPhone] = useEffect();
+    // const [address, setAddress] = useEffect();
     const { store, actions } = useContext(Context);
     const [formData, setFormData] = useState({
         name: '',
@@ -13,10 +14,12 @@ export const ContactEdit = ({ selectUser }) => {
         phone: '',
         address: ''
     });
+    const navigate = useNavigate()
+
 
     useEffect(() => {
-        setName.currentContact.name
-    }, [store.currentContact]);
+        setFormData(store.currentContact)
+    }, []);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -25,8 +28,9 @@ export const ContactEdit = ({ selectUser }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        actions.updateUser(formData);
+        actions.editUser(formData);
         setFormData({ name: '', email: '', phone: '', address: '' });
+        navigate("/Contact")
     };
 
     return (

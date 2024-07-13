@@ -94,14 +94,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ contacts: [...getStore().contacts, data] });
 			},
 			setUser: (username) => { setStore({ user: username }); },
-			editUser: async (updateUser) => {
+			editUser: async (dataToSend) => {
 				const url = `${getStore().host}/agendas/${getStore().user}/contacts/${getStore().currentContact.id}`;
 				const options = {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json'
 					},
-					body: JSON.stringify(updateUser)
+					body: JSON.stringify(dataToSend)
 				};
 
 				const response = await fetch(url, options);
@@ -109,18 +109,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log('Error:', response.status, response.statusText);
 					return;
 				}
-				getActions().getContact()
 			},
-			selectUser: (user) => {
-				setStore({ selectUser: user });
+			selectUser: (contact) => {
+				setStore({ currentContact: contact });
 			},
-			updateUser: (updatedUser) => {
-				const store = getStore();
-				const updatedUsers = store.users.map(user =>
-					user.id === updatedUser.id ? updatedUser : user
-				);
-				setStore({ users: updatedUsers });
-			},
+			
 		},
 	};
 };
