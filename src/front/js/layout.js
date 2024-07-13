@@ -8,10 +8,12 @@ import { Demo } from "./pages/demo.jsx";
 import { Single } from "./pages/single.jsx";
 import injectContext from "./store/appContext.js";
 
+
 import { Navbar } from "./component/navbar.jsx";
 import { Footer } from "./component/footer.jsx";
 import { Contact } from "./pages/Contact.jsx";
 import { ContactDetails } from "./pages/ContactDetails.jsx";
+import { StarWars } from "./pages/StarWars.jsx";
 import CreateContact from "./pages/CreateContact.jsx";
 import ContactEdit from "./pages/ContactEdit.jsx";
 
@@ -34,6 +36,7 @@ const Layout = () => {
                         <Route element={<ContactDetails />} path="/Contact-details" />
                         <Route element={<CreateContact />} path="/CreateContact" />
                         <Route element={<ContactEdit />} path="/ContactEdit" />
+                        <Route element={<StarWars />} path="/StarWars" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

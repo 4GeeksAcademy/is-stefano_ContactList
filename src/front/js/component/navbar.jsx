@@ -8,14 +8,16 @@ export const Navbar = () => {
 				<Link to = "/">
 				<button className="btn" href="#">Home</button>
 				</Link>
+				<Link to="/StarWars">
+				<button className="btn btn-outline-danger" type="submit">StarWars</button>
+				</Link>	
 				<Link to = "/Contact">
 				<button className="btn btn-outline-success" type="submit">Contact</button>
 				</Link>	
 				<Link to = "/CreateContact">
 				<button className="btn btn-outline-primary" type="submit">New Contact</button>
-				</Link>				
+				</Link>			
 			</div>
 		</nav>
 	);
-
 };
