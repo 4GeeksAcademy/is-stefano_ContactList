@@ -14,10 +14,10 @@ export const Home = () => {
 		<div className="container-fluid text-center mt-5 ">
 			<h1>Elije tu destino...</h1>
 			<Link to="/Contact">
-				<button className="btn btn-outline-success me-3" type="submit">Contact</button>
+				<button className="btn btn-success me-3" type="submit">Contact List</button>
 			</Link>
 			<Link to="/StarWars">
-				<button className="btn btn-outline-danger" type="submit">StarWars</button>
+				<button className="btn btn-danger" type="submit">StarWars</button>
 			</Link>
 		</div>
 	);
