@@ -18,6 +18,10 @@ import { Characters } from "./pages/Characters.jsx";
 import { CharactersDetails } from "./pages/CharactersDetails.jsx";
 import { Starships } from "./pages/Starships.jsx";
 import { StarshipsDetails } from "./pages/StarshipsDetails.jsx";
+import { Planets } from "./pages/Planets.jsx";
+import { PlanetDetails } from "./pages/PlanetDetails.jsx";
+import { Species } from "./pages/Species.jsx";
+import { SpeciesDetails } from "./pages/SpeciesDetails.jsx";
 import CreateContact from "./pages/CreateContact.jsx";
 import ContactEdit from "./pages/ContactEdit.jsx";
 
@@ -45,6 +49,10 @@ const Layout = () => {
                         <Route element={<CharactersDetails />} path="/Character-Details" />
                         <Route element={<Starships />} path="/Starships" />
                         <Route element={<StarshipsDetails />} path="/Starships-Details" />
+                        <Route element={<Planets />} path="/Planets" />
+                        <Route element={<PlanetDetails />} path="/Planet-Details" />
+                        <Route element={<Species />} path="/Species" />
+                        <Route element={<SpeciesDetails />} path="/Species-Details" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>
