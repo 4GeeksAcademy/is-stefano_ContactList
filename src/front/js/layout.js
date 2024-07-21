@@ -14,6 +14,14 @@ import { Footer } from "./component/footer.jsx";
 import { Contact } from "./pages/Contact.jsx";
 import { ContactDetails } from "./pages/ContactDetails.jsx";
 import { StarWars } from "./pages/StarWars.jsx";
+import { Characters } from "./pages/Characters.jsx";
+import { CharactersDetails } from "./pages/CharactersDetails.jsx";
+import { Starships } from "./pages/Starships.jsx";
+import { StarshipsDetails } from "./pages/StarshipsDetails.jsx";
+import { Planets } from "./pages/Planets.jsx";
+import { PlanetDetails } from "./pages/PlanetDetails.jsx";
+import { Species } from "./pages/Species.jsx";
+import { SpeciesDetails } from "./pages/SpeciesDetails.jsx";
 import CreateContact from "./pages/CreateContact.jsx";
 import ContactEdit from "./pages/ContactEdit.jsx";
 
@@ -23,7 +31,7 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
         <div>
@@ -37,6 +45,14 @@ const Layout = () => {
                         <Route element={<CreateContact />} path="/CreateContact" />
                         <Route element={<ContactEdit />} path="/ContactEdit" />
                         <Route element={<StarWars />} path="/StarWars" />
+                        <Route element={<Characters />} path="Characters" />
+                        <Route element={<CharactersDetails />} path="/Character-Details" />
+                        <Route element={<Starships />} path="/Starships" />
+                        <Route element={<StarshipsDetails />} path="/Starships-Details" />
+                        <Route element={<Planets />} path="/Planets" />
+                        <Route element={<PlanetDetails />} path="/Planet-Details" />
+                        <Route element={<Species />} path="/Species" />
+                        <Route element={<SpeciesDetails />} path="/Species-Details" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                 </ScrollToTop>

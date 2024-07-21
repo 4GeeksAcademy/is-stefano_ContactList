@@ -9,6 +9,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cohorte: 'Spain 72',
 			user: '',
 			host: 'https://playground.4geeks.com/contact',
+			characters: [],
+			starships: [],
+			planets: [],
+			species: [],
+			currentStarship: {},
+			currentCharacter: [],
+			currentPlanet: [],
+			currentSpecies: [],
 			alert: {
 				visible: true,
 				back: 'danger',
@@ -22,6 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				"email": "",
 				"address": ""
 			},
+
 		},
 		actions: {
 			exampleFunction: () => {
@@ -113,7 +122,94 @@ const getState = ({ getStore, getActions, setStore }) => {
 			selectUser: (contact) => {
 				setStore({ currentContact: contact });
 			},
-			
+			getCharacter:  async(uri)=> { 
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				setStore({ currentCharacter: data.result.properties});
+			},
+			getCharacters: async () => {
+				const url = `${process.env.URISWAPTECH}/api/people`;
+				const options = {
+					method: 'GET'
+				};
+				const response = await fetch(url, options);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				setStore({characters: data.results})
+			},
+			getStarships: async() => {
+				const url = `${process.env.URISWAPTECH}/api/starships`;
+				const options = {
+					method: 'GET'
+				};
+				const response = await fetch(url, options);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				setStore({ starships: data.results });
+			},
+			getOneStarship: async(uri) =>{
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				setStore({ currentStarship: data.result.properties});
+			},
+			getPlanets: async() => {
+				const url = `${process.env.URISWAPTECH}/api/planets`;
+				const options = {
+					method: 'GET'
+				};
+				const response = await fetch(url, options);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				setStore({ planets: data.results });
+			},
+			getOnePlanet: async(uri) =>{
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				setStore({ currentPlanet: data.result.properties});
+			},
+			getSpecies: async () => {
+				const url = `${process.env.URISWAPTECH}/api/species`;
+				const options = {
+					method: 'GET'
+				};
+				const response = await fetch(url, options);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				setStore({species: data.results})
+			},
+			getOneSpecies:  async(uri)=> { 
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				setStore({ currentSpecies: data.result.properties});
+			},
 		},
 	};
 };

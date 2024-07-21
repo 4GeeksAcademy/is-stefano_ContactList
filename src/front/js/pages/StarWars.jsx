@@ -20,7 +20,7 @@ export const StarWars = () => {
                         <p class="card-text">Adéntrate en el mundo de Star Wars y conoce sus personajes</p>
                         <span>
                             <Link to="/Characters">
-                            <button className="btn btn-success">Ver</button>
+                                <button className="btn btn-success">Ver</button>
                             </Link>
                         </span>
                     </div>
@@ -32,7 +32,7 @@ export const StarWars = () => {
                         <p class="card-text">Adéntrate en el mundo de Star Wars y conoce sus planetas</p>
                         <span>
                             <Link to="/Planets">
-                            <button className="btn btn-success">Ver</button>
+                                <button className="btn btn-success">Ver</button>
                             </Link>
                         </span>
                     </div>
@@ -43,8 +43,20 @@ export const StarWars = () => {
                         <h2 class="card-title">Species</h2>
                         <p class="card-text">Adéntrate en el mundo de Star Wars y conoce sus especies</p>
                         <span>
-                            <Link to="/Planets">
-                            <button className="btn btn-success">Ver</button>
+                            <Link to="/Species">
+                                <button className="btn btn-success">Ver</button>
+                            </Link>
+                        </span>
+                    </div>
+                </div>
+                <div class="card col-8  mb-3">
+                    <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/05/best-star-wars-ships.jpg" class="card-img-top" height="300px" widht="400" ></img>
+                    <div class="card-body">
+                        <h2 class="card-title">Starships</h2>
+                        <p class="card-text">Adéntrate en el mundo de Star Wars y conoce sus naves</p>
+                        <span>
+                            <Link to="/Starships">
+                                <button className="btn btn-success">Ver</button>
                             </Link>
                         </span>
                     </div>
