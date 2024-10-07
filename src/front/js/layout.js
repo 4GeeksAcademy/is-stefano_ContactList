@@ -22,13 +22,33 @@ import { Starships } from "./pages/Starships.jsx";
 import { StarshipDetails } from "./pages/StarshipDetails.jsx";
 
 
+
 //Create your first component
+=======
+import { Navbar } from "./component/navbar.jsx";
+import { Footer } from "./component/footer.jsx";
+import { Contact } from "./pages/Contact.jsx";
+import { ContactDetails } from "./pages/ContactDetails.jsx";
+import { StarWars } from "./pages/StarWars.jsx";
+import { Characters } from "./pages/Characters.jsx";
+import { CharactersDetails } from "./pages/CharactersDetails.jsx";
+import { Starships } from "./pages/Starships.jsx";
+import { StarshipsDetails } from "./pages/StarshipsDetails.jsx";
+import { Planets } from "./pages/Planets.jsx";
+import { PlanetDetails } from "./pages/PlanetDetails.jsx";
+import { Species } from "./pages/Species.jsx";
+import { SpeciesDetails } from "./pages/SpeciesDetails.jsx";
+import CreateContact from "./pages/CreateContact.jsx";
+import ContactEdit from "./pages/ContactEdit.jsx";
+
+//create your first component
+
 const Layout = () => {
     //The basename is used when your project is published in a subdirectory and not in the root of the domain
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
         <div className="d-flex flex-column min-vh-100">
@@ -36,6 +56,7 @@ const Layout = () => {
                 <ScrollToTop>
                 <Navbar />
                     <Routes>
+
                         <Route element={<Home />} path="/home" />
                         {/* <Route element={<Error404/>} path="*"/> */}
                         <Route element={<ContactCards />} path="/contact-cards" />
@@ -48,6 +69,23 @@ const Layout = () => {
                         <Route element={<Starships />} path="/starships" />
                         <Route element={<StarshipDetails />} path="/starship-details" />
                         
+=======
+                        <Route element={<Home />} path="/" />
+                        <Route element={<Contact />} path="/Contact" />
+                        <Route element={<ContactDetails />} path="/Contact-details" />
+                        <Route element={<CreateContact />} path="/CreateContact" />
+                        <Route element={<ContactEdit />} path="/ContactEdit" />
+                        <Route element={<StarWars />} path="/StarWars" />
+                        <Route element={<Characters />} path="Characters" />
+                        <Route element={<CharactersDetails />} path="/Character-Details" />
+                        <Route element={<Starships />} path="/Starships" />
+                        <Route element={<StarshipsDetails />} path="/Starships-Details" />
+                        <Route element={<Planets />} path="/Planets" />
+                        <Route element={<PlanetDetails />} path="/Planet-Details" />
+                        <Route element={<Species />} path="/Species" />
+                        <Route element={<SpeciesDetails />} path="/Species-Details" />
+                        <Route element={<h1>Not found!</h1>} />
+
                     </Routes>
                     <Footer />
                 </ScrollToTop>
