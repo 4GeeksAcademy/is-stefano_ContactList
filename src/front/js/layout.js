@@ -1,44 +1,35 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop.jsx";
-import { BackendURL } from "./component/backendURL.jsx";
-
-import { Home } from "./pages/home.jsx";
-import { Demo } from "./pages/demo.jsx";
-import { Single } from "./pages/single.jsx";
 import injectContext from "./store/appContext.js";
+import ScrollToTop from "./component/ScrollToTop.jsx";
+import { BackendURL } from "./component/BackendURL.jsx";
+import { Navbar } from "./component/Navbar.jsx";
+import { Footer } from "./component/Footer.jsx";
+import { Home } from "./pages/Home.jsx";
+import { Characters } from "./pages/Characters.jsx";
+import { CharacterDetails } from "./pages/CharacterDetails.jsx";
+import { Planets } from "./pages/Planets.jsx";
+import { PlanetDetails } from "./pages/PlanetDetails.jsx";
 
 
-import { Navbar } from "./component/navbar.jsx";
-import { Footer } from "./component/footer.jsx";
-import { Contact } from "./pages/Contact.jsx";
-import { ContactDetails } from "./pages/ContactDetails.jsx";
-import { StarWars } from "./pages/StarWars.jsx";
-import CreateContact from "./pages/CreateContact.jsx";
-import ContactEdit from "./pages/ContactEdit.jsx";
-
-//create your first component
 const Layout = () => {
-    //the basename is used when your project is published in a subdirectory and not in the root of the domain
-    // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
     if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
 
     return (
-        <div>
+        <div className="d-flex flex-column min-vh-100">
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    <Navbar />
+                <Navbar />
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Contact />} path="/Contact" />
-                        <Route element={<ContactDetails />} path="/Contact-details" />
-                        <Route element={<CreateContact />} path="/CreateContact" />
-                        <Route element={<ContactEdit />} path="/ContactEdit" />
-                        <Route element={<StarWars />} path="/StarWars" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route element={<Home />} path="/home" />
+                        <Route element={<Characters />} path="/characters" />
+                        <Route element={<CharacterDetails />} path="/character-details" />
+                        <Route element={<Planets />} path="/planets" />
+                        <Route element={<PlanetDetails />} path="/planet-details" />
                     </Routes>
+                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>
