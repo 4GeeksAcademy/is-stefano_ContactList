@@ -2,6 +2,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+
+			host: "https://playground.4geeks.com/contact/",
+			slug: "",
+			agenda: [],
 			demo: [
 				{ title: "FIRST", background: "white", initial: "white" },
 				{ title: "SECOND", background: "white", initial: "white" }
@@ -9,47 +13,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cohorte: 'Spain 72',
 			user: '',
 			host: 'https://playground.4geeks.com/contact',
+			characters: [],
+			starships: [],
+			planets: [],
+			species: [],
+			currentStarship: {},
+			currentCharacter: [],
+			currentPlanet: [],
+			currentSpecies: [],
 			alert: {
 				visible: true,
 				back: 'danger',
 				text: 'User not exist'
 			},
 			contacts: [],
+			isAgenda: false,
 			currentContact: {},
+			characters: [],
+			character: [],
+			starships: [],
+			starship: [],
+			planets: [],
+			planet: [],
+			favorites: [],
 			newContact: {
 				"name": "",
 				"phone": "",
 				"email": "",
 				"address": ""
 			},
+
 		},
 		actions: {
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			getMessage: async () => {
-				try {
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
-					const data = await resp.json();
-					setStore({ message: data.message });
-					return data;
-				} catch (error) {
-					console.log("Error loading message from backend", error);
-				}
-			},
-			changeColor: (index, color) => {
-				const store = getStore();
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				setStore({ demo: demo });
-			},
-			getUsers: async () => {
-				const url = `${getStore().host}/agendas/${getStore().user}/contacts`;
+			getCharacters: async () => {
+				const url = `${process.env.BACKEND_URL}/api/people`
 				const options = {
-					method: 'GET'
+					method: "GET"
 				};
 				const response = await fetch(url, options);
 				if (!response.ok) {
@@ -58,66 +57,89 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const data = await response.json();
 				console.log(data);
-				setStore({ contacts: data.contacts });
+				setStore({ characters: data.results });
 			},
-			getPosts: () => { },
-			setCurrentContact: (contact) => { setStore({ currentContact: contact }); },
-			deleteUser: async () => {
-				const url = `${getStore().host}/agendas/${getStore().user}/contacts/${getStore().currentContact.id}`;
+			getCharacter: async (url) => {
 				const options = {
-					method: 'DELETE'
+					method: "GET"
 				};
 				const response = await fetch(url, options);
 				if (!response.ok) {
-					console.log('Error:', response.status, response.statusText);
-					return;
-				}
-				console.log("Respone ok");
-				// const data = await response.json();
-				// console.log('User deleted:', data);
-			},
-			createUser: async (newContact) => {
-				const url = `${getStore().host}/agendas/${getStore().user}/contacts`;
-				const options = {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(newContact)
-				};
-				const response = await fetch(url, options);
-				if (!response.ok) {
-					console.log('Error:', response.status, response.statusText);
+					console.log('error: ', response.status, response.statusText);
 					return;
 				}
 				const data = await response.json();
-				setStore({ contacts: [...getStore().contacts, data] });
+				console.log(data);
+				setStore({ character: data.result });
 			},
-			setUser: (username) => { setStore({ user: username }); },
-			editUser: async (dataToSend) => {
-				const url = `${getStore().host}/agendas/${getStore().user}/contacts/${getStore().currentContact.id}`;
+			setCharacter: (person) => { setStore({character: person})},
+			getPlanets: async () => {
+				const url = `${process.env.BACKEND_URL}/api/planets`
 				const options = {
-					method: 'PUT',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(dataToSend)
+					method: "GET"
 				};
-
 				const response = await fetch(url, options);
 				if (!response.ok) {
-					console.log('Error:', response.status, response.statusText);
+					console.log('error: ', response.status, response.statusText);
 					return;
 				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ planets: data.results });
 			},
-			selectUser: (contact) => {
-				setStore({ currentContact: contact });
+			getPlanet: async (url) => {
+				const options = {
+					method: "GET"
+				};
+				const response = await fetch(url, options);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ planet: data.result });
 			},
-			
-		},
-	};
-};
-
-
+			setPlanet: (star) => { setStore({planet: star})},
+			getStarships: async () => {
+				const url = `${process.env.BACKEND_URL}/api/starships`
+				const options = {
+					method: "GET"
+				};
+				const response = await fetch(url, options);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ starships: data.results });
+			},
+			getStarship: async (url) => {
+				const options = {
+					method: "GET"
+				};
+				const response = await fetch(url, options);
+				if (!response.ok) {
+					console.log('error: ', response.status, response.statusText);
+					return;
+				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ starship: data.result });
+			},
+			setStarship: (vehicle) => { setStore({starship: vehicle})},
+			addFavorite: (name) => {
+				const store = getStore();
+				const myArray = store.favorites;
+				if (!myArray.includes(name)) {
+					setStore({ favorites: [...myArray, name] });
+				}
+			},
+			removeFavorite: (name) => {
+                const store = getStore();
+                const removeFavorites = store.favorites.filter((element) => element !== name);
+                setStore({ favorites: removeFavorites });
+            },
 
 export default getState;
